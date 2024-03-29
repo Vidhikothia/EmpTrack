@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+   <title>Admin Dashboard</title> 
+    <link rel="stylesheet" href="{% static 'css/employee_dashboard.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+   </head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1 logo"><img src="{% static 'images/ems.png' %}" height='50' weight='50'  alt='company Logo'/></span>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="btn btn-primary" href="{% url 'profile_admin' %}">Profile</a>
+                <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+            </li>
+          
+        </ul>
+    </div>
+</nav>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <br>
+        <div class="card" style="max-height: 300px; overflow-y: auto;">
+            <table class="table table-bordered">
+                <thead style="position: sticky; top: 0; background-color: #f1f1f1; z-index: 1;">
+              
+                <tr> 
+                    <th scope="col">Employee</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Reason</th>
+                    <th scope="col">Status</th>
+                </tr>
+              
+                </thead>
+                <tbody>
+                {% for leave in leaves%}
+                <tr>
+                    <td>{{leave.employee}}</td>
+                    <td>{{leave.start_date|date:'d-m-Y'}}</td>
+                    <td>{{leave.end_date|date:'d-m-Y'}}</td>
+                    <td>{{leave.reason}}</td>
+                    <td>
+                        {% if leave.status == 0 %}
+                    <a href="{% url 'leave_approved' id=leave.id %}"><span class='btn btn-success'>Approved</span></a>
+                        <a href="{% url 'leave_rejected' id=leave.id %}"><span class='btn btn-danger'>Rejected</span></a>
+                        {% elif leave.status == 2 %}
+                        <span class='btn btn-danger'>Rejected</span>
+                        {% elif leave.status == 1 %}
+                        <span class='btn btn-success'>Approved</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

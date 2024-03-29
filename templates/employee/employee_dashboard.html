@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/employee_dashboard.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1 logo"><img src="{% static 'images/ems.png' %}" height='50' weight='50'  alt='company Logo'/></span>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="{% url 'profile_employee' %}">Profile</a>
+                    <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Apply Leave</h5><br>
+                        <p class="card-text">Click below to apply for leave.</p>
+                        <a href="{% url 'apply_leave'%}" class="btn btn-primary">Apply Leave</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Salary Report</h5>
+                        <form action="{% url 'salary_pdf' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="input-box">
+                                <input type='month' name='month1' min="{% now 'Y' %}-01" max="{% now 'Y' %}-{% now 'm' %}" value="{% now 'Y' %}-01" class='form-control'>
+                            </div>
+                            <br>
+                            <input type="Submit" value="Download Salary Report" class="btn btn-primary"></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="card" style="max-height: 250px; overflow-y: auto;">
+            <table class="table table-bordered">
+                <thead style="position: sticky; top: 0; background-color: #f1f1f1; z-index: 1;">
+                <tr>
+                    
+                    <th width='30%' scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Reason</th>
+                    <th width='10%' scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for leave in leaves%}
+                <tr>
+                    <td>{{leave.start_date |date:'d-m-Y'}}</td>
+                    <td>{{leave.end_date|date:'d-m-Y'}}</td>
+                    <td>{{leave.reason}}</td>
+                    <td>
+                        {% if leave.status == 1 %}
+                        <span class='btn btn-success'>Approved</span>
+                        {% elif  leave.status == 2 %}
+                        <span class='btn btn-danger'>Rejected</span>
+                        {% elif  leave.status == 0 %}
+                        <span class='btn btn-warning'>Pending</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+   <title>Admin Profile</title> 
+    <link rel="stylesheet" href="{% static 'css/employee_dashboard.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<body>
+  <nav class="navbar">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1 logo"><img src="{% static 'images/ems.png' %}" height='50' weight='50'  alt='company Logo'/></span>
+        <ul class="navbar-nav ml-auto">
+             <li class="nav-item">
+                    <a href="{% url 'logout' %}" class="btn btn-primary">
+                     Logout
+                    </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="card" style="width: 50rem;">
+            <div class="card-body">
+              <h5 class="card-title">Profile</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Employee Details</h6>
+              <p class="card-text">Name:&nbsp;&nbsp;{{data.username}}</p>
+              <p class="card-text">Email:&nbsp;&nbsp;{{data.email}}</p>
+              <p class="card-text">Department:&nbsp;&nbsp;{{data.department}}</p>
+              <p class="card-text">Position:&nbsp;&nbsp;{{data.position}}</p>
+            </div>
+          </div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

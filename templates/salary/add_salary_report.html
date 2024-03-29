@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title> 
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <style>
+      .wrapper form{
+  margin-top: 20px;
+}
+.wrapper form .input-box{
+  height: 30px;
+  margin: 12px 0;
+}
+    </style>
+   </head>
+<body>
+  <div class="wrapper">
+    <h2>Add Salary of Employee</h2>
+    <form action="{% url 'add_salary_report' %}" method="POST">
+      {% csrf_token %} 
+      <div class="input-box">
+        {{form.employee}}
+      </div>
+      <div class="input-box">
+        <input type='date' name='month' class='form-control'>
+        </div>
+      <div class="input-box">
+        {{form.basic_salary}}
+      </div>
+      <div class="input-box">
+        {{form.dearness_allowance}}
+      </div>
+      <div class="input-box">
+        {{form.house_rent_allowance}}
+      </div>
+      <div class="input-box">
+        {{form.professional_tax}}
+      </div>
+      <div class="input-box">
+        {{form.tax_deducted}}
+      </div>
+      <div class="input-box">
+        {{form.provident_fund}}
+      </div>
+      <div class="input-box">
+        {{form.net_salary}}
+      </div>
+      <div class="input-box button">
+        <input type="Submit" value="Add Salary">
+      </div>
+    </form>
+    <p style=color:red;>{{error_message}}</p>
+  </div>
+</body>
+</html>
