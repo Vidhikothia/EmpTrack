@@ -23,8 +23,7 @@ Employee Dashboard:
 Employees can login to the system to (generate/download) salary report, view their profile, apply and view the status of their leaves. 
 
 **Technologies Used:**
-Language Used: Python
-Framework: Django
+Language Used: Python with Django framework
 Backend: SQLite
 Frontend: HTML, CSS, Javascript, Bootstrap
 Other Tools: Git for version control
@@ -37,8 +36,9 @@ Type commands: python manage.py makemigrations
                python manage.py migrate
                python manage.py runserver
 
-**Credits:**
-
+**Contributors:**
+Vidhikothia
+Amatullagajipurwala
 
 **Support:**
 For any questions or feedback please contact [vidhi.kothia.vk@gmail.com].
