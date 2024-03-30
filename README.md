@@ -31,7 +31,7 @@ Employees can login to the system to (generate/download) salary report, view the
 **Technologies Used:**
 
 Language Used: Python with Django framework<br>
-Backend: SQLite<br>
+Backend: SQLite3<br>
 Frontend: HTML, CSS, Javascript, Bootstrap<br>
 Other Tools: Git for version control
 <hr>
