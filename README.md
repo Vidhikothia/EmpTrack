@@ -36,7 +36,7 @@ Frontend: HTML, CSS, Javascript, Bootstrap<br>
 Other Tools: Git for version control
 <hr>
 
-**Usage:**
+**Setup Instructions**
 
 Make sure you have installed Django and other necessary tools.<br>
 Download the zip folder.<br>
